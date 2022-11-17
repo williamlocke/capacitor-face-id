@@ -13,7 +13,7 @@ public class FaceId: CAPPlugin {
         if #available(iOS 11, *) {
             let authContext = LAContext()
             
-            let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+            let _ = authContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
             switch(authContext.biometryType) {
             case .none:
                 call.success([
@@ -41,7 +41,7 @@ public class FaceId: CAPPlugin {
         authContext.touchIDAuthenticationAllowableReuseDuration = 60;
         
         let reason = call.getString("reason") ?? "Access requires authentication"
-        authContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason ) { success, error in
+        authContext.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
             if success {
                 DispatchQueue.main.async {
                     call.success()
