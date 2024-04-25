@@ -27,6 +27,10 @@ public class FaceId: CAPPlugin {
                 call.success([
                     "value": "FaceId"
                 ])
+            case .opticID:
+                call.success([
+                    "value": "OpticID"
+                ])
             }
         } else {
             call.success([
